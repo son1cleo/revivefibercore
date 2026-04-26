@@ -19,31 +19,35 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-forest/10 bg-cream/80 backdrop-blur-xl">
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-forest">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-bg/65 backdrop-blur-xl">
+      <nav className="page-shell flex items-center justify-between py-5">
+        <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-text-primary">
           <Leaf className="h-5 w-5" />
           <span>Revive Fiber Core</span>
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={`text-sm transition-colors ${
-                pathname === link.href ? "text-forest" : "text-charcoal/80 hover:text-forest"
+                pathname === link.href ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
               }`}
             >
               {link.label}
             </Link>
           ))}
+
+          <Link href="/contact" className="btn-primary px-5 py-2.5 text-xs">
+            Work With Us
+          </Link>
         </div>
 
         <button
           type="button"
           aria-label="Toggle navigation"
-          className="rounded-lg border border-forest/20 p-2 text-forest md:hidden"
+          className="rounded-xl border border-border bg-surface p-2 text-text-primary md:hidden"
           onClick={() => setOpen((value) => !value)}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -56,19 +60,22 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="border-t border-forest/10 bg-cream px-5 pb-5 md:hidden"
+            className="page-shell panel mb-3 px-5 pb-5 md:hidden"
           >
             <div className="flex flex-col gap-3 pt-4">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-charcoal/90"
+                  className="text-text-secondary"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
+              <Link href="/contact" className="btn-primary mt-2 text-center text-xs" onClick={() => setOpen(false)}>
+                Work With Us
+              </Link>
             </div>
           </motion.div>
         )}

@@ -3,17 +3,17 @@ import AnimatedSection from "./AnimatedSection";
 
 export default function AboutSnippet() {
   return (
-    <AnimatedSection className="mx-auto w-full max-w-6xl px-5 py-16">
-      <div className="grid gap-8 rounded-3xl bg-white/80 p-8 shadow-soft md:grid-cols-2 md:items-center">
+    <AnimatedSection className="page-shell py-20">
+      <div className="panel grid gap-8 p-8 md:grid-cols-2 md:items-center md:p-10">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-olive">About Revive Fiber Core</p>
-          <h2 className="mt-3 text-3xl font-bold text-charcoal">Turning textile byproducts into future-ready raw material.</h2>
+          <p className="section-label">01 - About</p>
+          <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,4vw,3.4rem)] leading-[1.12] text-text-primary">Turning textile byproducts into future-ready raw material.</h2>
         </div>
         <div>
-          <p className="text-charcoal/80">
+          <p className="text-text-secondary">
             Revive Fiber Core partners with manufacturers to recover value from textile waste through modern fiber recycling and transparent sustainability practices.
           </p>
-          <Link href="/about" className="mt-5 inline-block rounded-full border border-forest/30 px-5 py-2 text-sm font-medium text-forest hover:bg-forest/5">
+          <Link href="/about" className="btn-ghost mt-6 inline-block">
             Learn More
           </Link>
         </div>

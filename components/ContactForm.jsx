@@ -47,13 +47,13 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-forest/10 bg-white p-6 shadow-soft">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Name" name="name" value={form.name} onChange={handleChange} required />
         <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
       </div>
       <Field label="Subject" name="subject" value={form.subject} onChange={handleChange} required />
-      <label className="block text-sm font-medium text-charcoal">
+      <label className="block text-sm font-medium text-text-secondary">
         Message
         <textarea
           name="message"
@@ -61,20 +61,20 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className="mt-1 w-full rounded-xl border border-forest/20 px-4 py-3 outline-none transition focus:border-forest focus:ring-2 focus:ring-sage/40"
+          className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
         />
       </label>
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded-full bg-forest px-6 py-3 text-sm font-semibold text-cream transition hover:bg-olive disabled:cursor-not-allowed disabled:opacity-70"
+        className="btn-primary disabled:cursor-not-allowed disabled:opacity-70"
       >
         {loading ? "Sending..." : "Send Message"}
       </button>
 
       {status && (
-        <p className={`text-sm ${status.type === "success" ? "text-forest" : "text-red-600"}`}>{status.message}</p>
+        <p className={`text-sm ${status.type === "success" ? "text-accent" : "text-red-300"}`}>{status.message}</p>
       )}
     </form>
   );
@@ -82,11 +82,11 @@ export default function ContactForm() {
 
 function Field({ label, ...props }) {
   return (
-    <label className="block text-sm font-medium text-charcoal">
+    <label className="block text-sm font-medium text-text-secondary">
       {label}
       <input
         {...props}
-        className="mt-1 w-full rounded-xl border border-forest/20 px-4 py-3 outline-none transition focus:border-forest focus:ring-2 focus:ring-sage/40"
+        className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
       />
     </label>
   );

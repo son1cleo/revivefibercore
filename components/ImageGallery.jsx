@@ -16,7 +16,7 @@ export default function ImageGallery({ items }) {
             key={item.src}
             type="button"
             onClick={() => setIndex(itemIndex)}
-            className="group relative h-64 overflow-hidden rounded-2xl"
+            className="panel group relative h-64 overflow-hidden"
           >
             <Image
               src={item.src}
@@ -25,7 +25,7 @@ export default function ImageGallery({ items }) {
               className="object-cover transition duration-500 group-hover:scale-105"
               sizes="(max-width: 1024px) 50vw, 33vw"
             />
-            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-left text-sm font-medium text-white">
+            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg to-transparent p-4 text-left text-sm font-medium text-text-primary">
               {item.title}
             </span>
           </button>

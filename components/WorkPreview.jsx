@@ -4,17 +4,20 @@ import AnimatedSection from "./AnimatedSection";
 
 export default function WorkPreview({ items }) {
   return (
-    <AnimatedSection className="mx-auto w-full max-w-6xl px-5 py-14" delay={0.05}>
+    <AnimatedSection className="page-shell py-14" delay={0.05}>
       <div className="flex items-end justify-between gap-4">
-        <h2 className="text-3xl font-bold text-charcoal">Featured Work</h2>
-        <Link href="/work" className="text-sm font-medium text-forest hover:underline">
+        <div>
+          <p className="section-label">03 - Work</p>
+          <h2 className="mt-3 font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.12] text-text-primary">Featured Projects</h2>
+        </div>
+        <Link href="/work" className="text-sm font-medium text-text-secondary hover:text-accent">
           View Full Showcase
         </Link>
       </div>
 
       <div className="mt-7 grid gap-5 md:grid-cols-3">
         {items.map((item) => (
-          <article key={item.id} className="group overflow-hidden rounded-2xl border border-forest/10 bg-white">
+          <article key={item.id} className="panel group overflow-hidden">
             <div className="relative h-56 overflow-hidden">
               <Image
                 src={item.src}
@@ -25,7 +28,7 @@ export default function WorkPreview({ items }) {
               />
             </div>
             <div className="p-4">
-              <h3 className="font-semibold text-charcoal">{item.title}</h3>
+              <h3 className="font-semibold text-text-primary">{item.title}</h3>
             </div>
           </article>
         ))}

@@ -1,0 +1,120 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+
+export default function AdminLoginPage() {
+  const router = useRouter();
+  const [mode, setMode] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handlePasswordLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const supabase = createSupabaseBrowserClient();
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        throw error;
+      }
+
+      router.push("/admin");
+      router.refresh();
+    } catch (error) {
+      setMessage(error.message || "Unable to sign in.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleMagicLink = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const supabase = createSupabaseBrowserClient();
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin`
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setMessage("Magic link sent. Check your inbox.");
+    } catch (error) {
+      setMessage(error.message || "Unable to send magic link.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <main className="page-shell py-20">
+      <div className="mx-auto w-full max-w-md panel p-8">
+        <p className="section-label">Admin / Access</p>
+        <h1 className="mt-2 font-display text-3xl text-text-primary">Sign in to Dashboard</h1>
+
+        <div className="mt-6 grid grid-cols-2 rounded-xl border border-border p-1 text-sm">
+          <button
+            type="button"
+            onClick={() => setMode("password")}
+            className={`rounded-lg px-3 py-2 ${mode === "password" ? "bg-accent text-bg" : "text-text-secondary"}`}
+          >
+            Password
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode("magic")}
+            className={`rounded-lg px-3 py-2 ${mode === "magic" ? "bg-accent text-bg" : "text-text-secondary"}`}
+          >
+            Magic Link
+          </button>
+        </div>
+
+        <form onSubmit={mode === "password" ? handlePasswordLogin : handleMagicLink} className="mt-6 space-y-4">
+          <label className="block text-sm font-medium text-text-secondary">
+            Email
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
+            />
+          </label>
+
+          {mode === "password" && (
+            <label className="block text-sm font-medium text-text-secondary">
+              Password
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
+              />
+            </label>
+          )}
+
+          <button type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-70">
+            {loading ? "Please wait..." : mode === "password" ? "Sign In" : "Send Magic Link"}
+          </button>
+
+          {message ? <p className="text-sm text-text-secondary">{message}</p> : null}
+        </form>
+      </div>
+    </main>
+  );
+}

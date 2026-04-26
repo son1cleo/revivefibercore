@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function CTABanner() {
   return (
-    <section className="px-5 py-16">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 rounded-3xl bg-gradient-to-r from-forest to-olive p-8 md:flex-row md:items-center">
+    <section className="page-shell py-14">
+      <div className="panel flex w-full flex-col items-start justify-between gap-6 p-8 md:flex-row md:items-center md:p-10">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-cream/80">Start a Partnership</p>
-          <h2 className="mt-2 text-3xl font-bold text-cream">Ready to work with us? Get in touch.</h2>
+          <p className="section-label">Let&apos;s Collaborate</p>
+          <h2 className="mt-2 font-display text-[clamp(2rem,4vw,3.3rem)] text-text-primary">Ready to work with us? Get in touch.</h2>
         </div>
-        <Link href="/contact" className="rounded-full bg-cream px-6 py-3 text-sm font-semibold text-forest transition hover:bg-mint">
+        <Link href="/contact" className="btn-primary">
           Contact Revive Fiber Core
         </Link>
       </div>

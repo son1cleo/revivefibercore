@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
-import { getAllBlogPosts, getBlogBySlug } from "@/lib/blog";
-
-export async function generateStaticParams() {
-  return getAllBlogPosts().map((post) => ({ slug: post.slug }));
-}
+import { getPublishedBlogBySlug } from "@/lib/cms";
 
 export async function generateMetadata({ params }) {
-  const post = getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -20,28 +17,31 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function BlogPostPage({ params }) {
-  const post = getBlogBySlug(params.slug);
+export default async function BlogPostPage({ params }) {
+  const { slug } = await params;
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <article className="mx-auto w-full max-w-3xl px-5 py-16">
-      <p className="text-xs uppercase tracking-wide text-olive">{post.category}</p>
-      <h1 className="mt-3 text-4xl font-bold text-charcoal">{post.title}</h1>
-      <p className="mt-3 text-sm text-charcoal/70">
+    <article className="page-shell py-16">
+      <div className="mx-auto max-w-5xl">
+        <p className="section-label">Article / {post.category}</p>
+        <h1 className="mt-3 max-w-4xl font-display text-[clamp(2.4rem,5vw,4.7rem)] leading-[1.08] text-text-primary">{post.title}</h1>
+        <p className="mt-3 text-sm text-text-secondary">
         {new Date(post.date).toLocaleDateString()} · {post.author}
-      </p>
+        </p>
 
-      <div className="prose prose-slate mt-10 max-w-none prose-headings:text-charcoal prose-p:text-charcoal/85">
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+        <div className="prose mt-10 max-w-3xl prose-headings:font-display prose-headings:text-text-primary prose-p:text-text-secondary prose-strong:text-text-primary prose-a:text-accent">
+          <ReactMarkdown>{post.content}</ReactMarkdown>
+        </div>
+
+        <Link href="/blog" className="btn-ghost mt-10 inline-block">
+          Back to Blog
+        </Link>
       </div>
-
-      <Link href="/blog" className="mt-10 inline-block rounded-full border border-forest/30 px-5 py-2 text-sm font-medium text-forest hover:bg-forest/5">
-        Back to Blog
-      </Link>
     </article>
   );
 }

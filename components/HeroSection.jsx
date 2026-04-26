@@ -2,55 +2,75 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden px-5 pb-20 pt-24 md:pt-32">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-mint via-cream to-sage/30" />
-      <div className="absolute -left-20 top-16 -z-10 h-72 w-72 rounded-full bg-sage/30 blur-3xl" />
-      <div className="absolute -right-16 bottom-10 -z-10 h-80 w-80 animate-drift rounded-full bg-forest/15 blur-3xl" />
+    <section className="relative min-h-[100svh] overflow-hidden border-b border-border">
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1800&q=80"
+          alt="Fiber field and clean energy"
+          fill
+          priority
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg/55 via-bg/85 to-bg" />
+      </div>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-8">
+      <div className="page-shell relative z-10 flex min-h-[calc(100svh-80px)] flex-col justify-center py-20">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-full border border-forest/20 bg-white/70 px-4 py-1 text-xs uppercase tracking-[0.2em] text-forest"
+          className="section-label"
         >
-          Sustainable Manufacturing Partner
+          00 - Home
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="max-w-3xl text-4xl font-bold leading-tight text-charcoal md:text-6xl"
+          transition={{ duration: 0.6, delay: 0.07 }}
+          className="mt-4 max-w-6xl font-display text-[clamp(3.4rem,10vw,8.2rem)] leading-[0.98] text-text-primary"
         >
-          Bringing Fiber Back to Life.
+          Reviving
+          <br />
+          Fibers With
+          <br />
+          <em className="font-display italic text-accent">Precision</em>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="max-w-2xl text-base text-charcoal/80 md:text-lg"
-        >
-          We transform textile waste into premium recycled fiber through precision engineering, sustainable process design, and consistent quality control.
-        </motion.p>
-
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-wrap gap-4"
+          transition={{ duration: 0.6, delay: 0.16 }}
+          className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
         >
-          <Link href="/work" className="rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition hover:bg-olive">
-            Explore Our Work
-          </Link>
-          <Link href="/contact" className="rounded-full border border-forest/30 px-6 py-3 text-sm font-medium text-forest transition hover:bg-forest/5">
-            Contact Us
-          </Link>
+          <p className="max-w-xl text-base leading-relaxed text-text-secondary md:text-[1.08rem]">
+            From solar-ready recovery lines to full-scale recycled fiber programs, we help brands reduce waste and build resilient circular supply systems.
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            <Link href="/work" className="btn-primary">
+              Explore Work
+            </Link>
+            <Link href="/contact" className="btn-ghost">
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
+      </div>
+
+      <div className="ticker relative z-10">
+        <div className="ticker-track animate-marquee">
+          {new Array(2).fill(0).map((_, i) => (
+            <span key={i} className="whitespace-nowrap">
+              Sustainable · Recycled · Handcrafted · Natural · Sustainable · Recycled · Handcrafted · Natural
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
