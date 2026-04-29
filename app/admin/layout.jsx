@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAdminUser } from "@/lib/auth";
 import AdminLogoutButton from "@/components/admin/AdminLogoutButton";
+import BrandLogo from "@/components/BrandLogo";
 
 export default async function AdminLayout({ children }) {
   const user = await getAdminUser();
@@ -14,7 +15,9 @@ export default async function AdminLayout({ children }) {
     <div className="page-shell grid gap-6 py-4 md:grid-cols-[230px_1fr]">
       <aside className="panel p-5">
         <p className="section-label">Admin</p>
-        <h2 className="mt-2 font-display text-xl text-text-primary">Revive Fiber Core</h2>
+        <div className="mt-2">
+          <BrandLogo className="h-10" />
+        </div>
         <p className="mt-1 text-xs text-text-secondary">{user.email}</p>
 
         <nav className="mt-6 space-y-2 text-sm">

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function Loading() {
   return (
@@ -11,8 +12,8 @@ export default function Loading() {
         transition={{ duration: 0.5 }}
         className="text-center"
       >
-        <p className="text-xs uppercase tracking-[0.24em] text-text-muted">Revive Fiber Core</p>
-        <h2 className="mt-2 font-display text-3xl">Growing Circular Value</h2>
+        <BrandLogo className="mx-auto h-16" />
+        <h2 className="mt-4 font-display text-3xl text-text-primary">Growing Circular Value</h2>
       </motion.div>
     </div>
   );

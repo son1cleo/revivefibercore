@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import BrandLogo from "@/components/BrandLogo";
 
 const links = [
   { href: "/", label: "Home" },
@@ -21,9 +22,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-bg/65 backdrop-blur-xl">
       <nav className="page-shell flex items-center justify-between py-5">
-        <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-text-primary">
-          <Leaf className="h-5 w-5" />
-          <span>Revive Fiber Core</span>
+        <Link href="/" className="flex items-center">
+          <BrandLogo className="h-11" />
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">
