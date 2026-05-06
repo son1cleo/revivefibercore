@@ -10,8 +10,8 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem(STORAGE_KEY);
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const shouldUseDark = storedTheme ? storedTheme === "dark" : prefersDark;
+    // Always default to light when there's no stored preference
+    const shouldUseDark = storedTheme ? storedTheme === "dark" : false;
 
     setIsDark(shouldUseDark);
     document.documentElement.classList.toggle("dark", shouldUseDark);
@@ -32,7 +32,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={isDark}
-      className="fixed bottom-5 left-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface text-text-primary shadow-soft transition hover:scale-105 hover:border-accent"
+      className="fixed bottom-5 left-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border-none bg-[rgb(var(--color-surface))] text-text-primary shadow-soft transition hover:scale-105 focus:outline-none focus:ring-0"
     >
       {isDark ? <SunMedium className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
     </button>

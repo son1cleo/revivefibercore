@@ -52,11 +52,11 @@ export default function HeroSection() {
             From solar-ready recovery lines to full-scale recycled fiber programs, we help brands reduce waste and build resilient circular supply systems.
           </p>
 
-          <div className="flex flex-wrap gap-3">
-            <Link href="/work" className="btn-primary">
+          <div className="flex flex-wrap gap-3 z-20">
+            <Link href="/work" className="btn-primary z-20">
               Explore Work
             </Link>
-            <Link href="/contact" className="btn-ghost">
+            <Link href="/contact" className="btn-ghost z-20">
               Our Products
             </Link>
           </div>

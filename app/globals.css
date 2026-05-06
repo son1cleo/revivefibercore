@@ -111,8 +111,8 @@ body::after {
 }
 
 .btn-primary {
-  background: var(--color-accent);
-  color: #f4faf5;
+  background: rgb(var(--color-accent));
+  color: rgb(var(--color-surface));
   border-radius: 9999px;
   padding: 14px 28px;
   font-weight: 600;
@@ -123,14 +123,14 @@ body::after {
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);
+  background: rgb(var(--color-accent-hover));
   transform: translateY(-1px);
 }
 
 .btn-ghost {
   background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text-primary);
+  border: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-text-primary));
   border-radius: 9999px;
   padding: 14px 28px;
   font-weight: 600;
@@ -140,8 +140,8 @@ body::after {
 }
 
 .btn-ghost:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: rgb(var(--color-accent));
+  color: rgb(var(--color-accent));
 }
 
 .ticker {
