@@ -1,12 +1,24 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+function getSupabaseClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !serviceRoleKey) {
+    return null;
+  }
+
+  return createClient(url, serviceRoleKey);
+}
 
 export async function POST(req) {
   try {
+    const supabase = getSupabaseClient();
+
+    if (!supabase) {
+      return Response.json({ error: "Server is missing Supabase configuration" }, { status: 500 });
+    }
+
     const { name, company, contact_person, email, phone, website, logo_url, description } =
       await req.json();
 
