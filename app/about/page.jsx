@@ -2,8 +2,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { team, timeline } from "@/lib/content";
 
 export const metadata = {
-  title: "About | Revive Fiber Core",
-  description: "Learn about Revive Fiber Core's mission, values, and sustainability milestones."
+  title: "About | Revive Fiber Co",
+  description: "Learn about Revive Fiber Co's mission, values, and sustainability milestones."
 };
 
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
         <p className="section-label">01 - About</p>
         <h1 className="mt-3 max-w-4xl font-display text-[clamp(2.4rem,5vw,4.8rem)] leading-[1.08] text-text-primary">Built to advance circular textile manufacturing.</h1>
         <p className="mt-5 max-w-3xl text-text-secondary">
-          Revive Fiber Core was founded to transform textile waste into reliable, high-performance fiber inputs for modern manufacturers.
+          Revive Fiber Co was founded to transform textile waste into reliable, high-performance fiber inputs for modern manufacturers.
           We combine operational precision with environmental responsibility to help partners scale sustainably.
         </p>
       </AnimatedSection>

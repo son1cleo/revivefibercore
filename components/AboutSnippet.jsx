@@ -11,7 +11,7 @@ export default function AboutSnippet() {
         </div>
         <div>
           <p className="text-text-secondary">
-            Revive Fiber Core partners with manufacturers to recover value from textile waste through modern fiber recycling and transparent sustainability practices.
+            Revive Fiber Co partners with manufacturers to recover value from textile waste through modern fiber recycling and transparent sustainability practices.
           </p>
           <Link href="/about" className="btn-ghost mt-6 inline-block">
             Learn More

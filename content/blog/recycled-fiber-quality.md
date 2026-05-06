@@ -2,7 +2,7 @@
 title: "Can Recycled Fiber Match Premium Quality Standards?"
 date: "2026-02-09"
 category: "Quality"
-author: "Revive Fiber Core Team"
+author: "Revive Fiber Co Team"
 excerpt: "What quality teams should measure when evaluating recycled input materials."
 ---
 

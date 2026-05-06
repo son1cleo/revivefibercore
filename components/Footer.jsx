@@ -4,14 +4,14 @@ export default function Footer() {
   return (
     <footer className="mt-20 border-t border-border bg-surface/50">
       <div className="page-shell py-14">
-        <p className="section-label">04 - Contact</p>
+        <p className="section-label">04 - Our Products</p>
         <h2 className="mt-3 max-w-4xl text-[clamp(2.2rem,5vw,4.6rem)] font-display leading-[1.08] text-text-primary">
           Let&apos;s work on something meaningful.
         </h2>
 
         <div className="mt-10 grid gap-8 md:grid-cols-3">
         <div>
-          <h3 className="text-lg font-semibold text-text-primary">Revive Fiber Core</h3>
+          <h3 className="text-lg font-semibold text-text-primary">Revive Fiber Co</h3>
           <p className="mt-2 text-sm text-text-secondary">
             Building circular textile supply chains through reliable recycled fiber processing.
           </p>
@@ -23,7 +23,7 @@ export default function Footer() {
             <Link href="/about">About</Link>
             <Link href="/work">Work</Link>
             <Link href="/blog">Blog</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact">Our Products</Link>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ export default function Footer() {
       </div>
       </div>
       <div className="border-t border-border py-4 text-center text-xs text-text-muted">
-        © {new Date().getFullYear()} Revive Fiber Core. Crafted for circular value.
+        © {new Date().getFullYear()} Revive Fiber Co. Crafted for circular value.
       </div>
     </footer>
   );

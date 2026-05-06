@@ -2,8 +2,8 @@ import BlogCard from "@/components/BlogCard";
 import { getPublishedBlogs } from "@/lib/cms";
 
 export const metadata = {
-  title: "Blog | Revive Fiber Core",
-  description: "Read sustainability, recycling, and textile innovation insights from Revive Fiber Core."
+  title: "Blog | Revive Fiber Co",
+  description: "Read sustainability, recycling, and textile innovation insights from Revive Fiber Co."
 };
 
 export default async function BlogPage() {

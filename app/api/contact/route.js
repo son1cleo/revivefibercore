@@ -44,7 +44,7 @@ export async function POST(request) {
     });
 
     await transporter.sendMail({
-      from: `Revive Fiber Core <${SMTP_USER}>`,
+      from: `Revive Fiber Co <${SMTP_USER}>`,
       to: CONTACT_TO,
       replyTo: body.email,
       subject: `[Website Contact] ${body.subject}`,

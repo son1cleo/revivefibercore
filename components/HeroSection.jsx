@@ -57,7 +57,7 @@ export default function HeroSection() {
               Explore Work
             </Link>
             <Link href="/contact" className="btn-ghost">
-              Contact Us
+              Our Products
             </Link>
           </div>
         </motion.div>
@@ -67,7 +67,7 @@ export default function HeroSection() {
         <div className="ticker-track animate-marquee">
           {new Array(2).fill(0).map((_, i) => (
             <span key={i} className="whitespace-nowrap">
-              Sustainable · Recycled · Handcrafted · Natural · Sustainable · Recycled · Handcrafted · Natural
+              Sustainable · Recycled · Circular Eco · Sustainable · Recycled · Circular Eco
             </span>
           ))}
         </div>

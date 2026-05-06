@@ -2,7 +2,7 @@
 title: "How Circular Textile Manufacturing Reduces Industrial Waste"
 date: "2026-03-18"
 category: "Sustainability"
-author: "Revive Fiber Core Team"
+author: "Revive Fiber Co Team"
 excerpt: "A practical look at closed-loop systems and measurable outcomes for textile manufacturers."
 ---
 

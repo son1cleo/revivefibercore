@@ -30,6 +30,12 @@ export default async function AdminLayout({ children }) {
           <Link href="/admin/work" className="block rounded-lg px-3 py-2 text-text-secondary hover:bg-surface-2 hover:text-text-primary">
             Work Items
           </Link>
+          <Link href="/admin/employment" className="block rounded-lg px-3 py-2 text-text-secondary hover:bg-surface-2 hover:text-text-primary">
+            Employment
+          </Link>
+          <Link href="/admin/clients" className="block rounded-lg px-3 py-2 text-text-secondary hover:bg-surface-2 hover:text-text-primary">
+            Clients
+          </Link>
         </nav>
 
         <div className="mt-8">

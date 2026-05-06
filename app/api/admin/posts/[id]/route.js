@@ -32,7 +32,7 @@ export async function PATCH(request, context) {
     slug,
     excerpt: payload.excerpt || "",
     content: payload.content || "",
-    author: payload.author || "Revive Fiber Core Team",
+    author: payload.author || "Revive Fiber Co Team",
     category: payload.category || "Insights",
     cover_image: payload.coverImage || null,
     published: Boolean(payload.published),

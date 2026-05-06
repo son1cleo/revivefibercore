@@ -9,8 +9,8 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
 
 export const metadata = {
-  title: "Revive Fiber Core | Sustainable Recycled Fiber",
-  description: "Revive Fiber Core transforms textile waste into high-quality recycled fiber for modern sustainable manufacturing."
+  title: "Revive Fiber Co | Sustainable Recycled Fiber",
+  description: "Revive Fiber Co transforms textile waste into high-quality recycled fiber for modern sustainable manufacturing."
 };
 
 export default function RootLayout({ children }) {

@@ -8,7 +8,7 @@ import CTABanner from "@/components/CTABanner";
 import { featuredWork, homeStats, services, testimonials } from "@/lib/content";
 
 export const metadata = {
-  title: "Home | Revive Fiber Core",
+  title: "Home | Revive Fiber Co",
   description: "Bringing fiber back to life with sustainable recycled textile processing."
 };
 

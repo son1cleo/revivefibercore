@@ -1,8 +1,8 @@
-# Revive Fiber Core - Project Worklog (Up to 2026-04-27)
+# Revive Fiber Co - Project Worklog (Up to 2026-04-27)
 
 ## Summary
 
-This log records completed implementation work for the Revive Fiber Core website from initial scaffold through Supabase CMS integration, admin dashboard delivery, testing, fixes, and redesign pass.
+This log records completed implementation work for the Revive Fiber Co website from initial scaffold through Supabase CMS integration, admin dashboard delivery, testing, fixes, and redesign pass.
 
 ## Completed Milestones
 

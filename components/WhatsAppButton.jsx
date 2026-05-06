@@ -1,5 +1,5 @@
 export default function WhatsAppButton() {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "8801000000000";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "8801988831521";
   const href = `https://wa.me/${phone}`;
 
   return (

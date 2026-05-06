@@ -1,6 +1,6 @@
-# Revive Fiber Core
+# Revive Fiber Co
 
-Revive Fiber Core is a modern, eco-focused showcase site built with Next.js App Router, featuring a Supabase-backed admin CMS for blogs and work media.
+Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Router, featuring a Supabase-backed admin CMS for blogs and work media.
 
 ## Current Status
 
@@ -49,7 +49,7 @@ SMTP_USER=
 SMTP_PASS=
 CONTACT_TO=
 
-NEXT_PUBLIC_WHATSAPP_NUMBER=8801000000000
+NEXT_PUBLIC_WHATSAPP_NUMBER=8801988831521
 ```
 
 4. Initialize Supabase schema:

@@ -9,7 +9,7 @@ export default function CTABanner() {
           <h2 className="mt-2 font-display text-[clamp(2rem,4vw,3.3rem)] text-text-primary">Ready to work with us? Get in touch.</h2>
         </div>
         <Link href="/contact" className="btn-primary">
-          Contact Revive Fiber Core
+          Our Products
         </Link>
       </div>
     </section>

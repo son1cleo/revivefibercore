@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${post.title} | Revive Fiber Core Blog`,
+    title: `${post.title} | Revive Fiber Co Blog`,
     description: post.excerpt
   };
 }
