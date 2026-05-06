@@ -3,17 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #eef6ee;
-  --color-surface: #ffffff;
-  --color-surface-2: #e4f0e3;
-  --color-border: #c4d8c3;
-  --color-text-primary: #1f3b2e;
-  --color-text-secondary: #456556;
-  --color-text-muted: #6b8779;
-  --color-accent: #2f7a54;
-  --color-accent-hover: #3f9368;
-  --color-accent-muted: #d2e9d6;
-
+  --color-bg: 238 246 238;
+  --color-surface: 255 255 255;
+  --color-surface-2: 228 240 227;
+  --color-border: 196 216 195;
+  --color-text-primary: 31 59 46;
+  --color-text-secondary: 69 101 86;
+  --color-text-muted: 107 135 121;
+  --color-accent: 47 122 84;
+  --color-accent-hover: 63 147 104;
+  --color-accent-muted: 210 233 214;
   --text-hero: clamp(4rem, 10vw, 9rem);
   --text-h1: clamp(2.5rem, 5vw, 5rem);
   --text-h2: clamp(1.75rem, 3vw, 3rem);
@@ -25,6 +24,19 @@
 
   --container-max: 1280px;
   --container-pad: clamp(1.25rem, 5vw, 4rem);
+}
+
+.dark {
+  --color-bg: 10 18 14;
+  --color-surface: 18 28 22;
+  --color-surface-2: 26 39 31;
+  --color-border: 49 73 60;
+  --color-text-primary: 232 243 235;
+  --color-text-secondary: 178 199 186;
+  --color-text-muted: 136 161 147;
+  --color-accent: 87 175 122;
+  --color-accent-hover: 110 195 142;
+  --color-accent-muted: 31 59 46;
 }
 
 * {
@@ -39,6 +51,14 @@ body {
   color: var(--color-text-primary);
 }
 
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -51,7 +71,7 @@ body::after {
   pointer-events: none;
   z-index: 120;
   opacity: 0.08;
-  background-image: radial-gradient(circle at 2px 2px, rgba(31, 59, 46, 0.2) 1px, transparent 0);
+  background-image: radial-gradient(circle at 2px 2px, rgb(31 59 46 / 0.2) 1px, transparent 0);
   background-size: 4px 4px;
 }
 

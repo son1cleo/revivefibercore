@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function CareersPage() {
   return (
-    <main className="page-shell py-16">
+    <main className="page-shell py-16 pb-28">
       <div className="mx-auto max-w-2xl">
         <div className="mb-12">
           <h1 className="font-display text-4xl text-text-primary">Career Opportunities</h1>

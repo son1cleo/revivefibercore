@@ -8,17 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: "#EEF6EE",
-        surface: "#FFFFFF",
-        "surface-2": "#E4F0E3",
-        border: "#C4D8C3",
-        accent: "#2F7A54",
-        "accent-h": "#3F9368",
-        "accent-bg": "#D2E9D6",
+        bg: "rgb(var(--color-bg) / <alpha-value>)",
+        surface: "rgb(var(--color-surface) / <alpha-value>)",
+        "surface-2": "rgb(var(--color-surface-2) / <alpha-value>)",
+        border: "rgb(var(--color-border) / <alpha-value>)",
+        accent: "rgb(var(--color-accent) / <alpha-value>)",
+        "accent-h": "rgb(var(--color-accent-hover) / <alpha-value>)",
+        "accent-bg": "rgb(var(--color-accent-muted) / <alpha-value>)",
         text: {
-          primary: "#1F3B2E",
-          secondary: "#456556",
-          muted: "#6B8779"
+          primary: "rgb(var(--color-text-primary) / <alpha-value>)",
+          secondary: "rgb(var(--color-text-secondary) / <alpha-value>)",
+          muted: "rgb(var(--color-text-muted) / <alpha-value>)"
         }
       },
       fontFamily: {

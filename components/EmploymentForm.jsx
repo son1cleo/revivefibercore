@@ -109,13 +109,13 @@ export default function EmploymentForm() {
   };
 
   return (
-    <div className="rounded-lg border border-border-light bg-white p-8">
+    <div className="rounded-lg border border-border bg-surface p-8 shadow-soft">
       {status === "success" && (
-        <div className="mb-6 flex items-start gap-3 rounded-lg bg-green-50 p-4">
-          <CheckCircle className="mt-0.5 h-5 w-5 text-green-600 flex-shrink-0" />
+          <div className="mb-6 flex items-start gap-3 rounded-lg bg-accent-bg p-4">
+          <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
           <div>
-            <h3 className="font-semibold text-green-900">Application Submitted</h3>
-            <p className="mt-1 text-sm text-green-700">
+            <h3 className="font-semibold text-text-primary">Application Submitted</h3>
+            <p className="mt-1 text-sm text-text-secondary">
               Thank you for applying! We'll review your application and get back to you soon.
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function EmploymentForm() {
             value={formData.full_name}
             onChange={handleInputChange}
             required
-            className="mt-2 w-full rounded-lg border border-border-light bg-white px-4 py-2 text-text-primary placeholder-text-tertiary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="mt-2 w-full rounded-lg border border-border bg-surface-2 px-4 py-2 text-text-primary placeholder-text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             placeholder="Your full name"
           />
         </div>
@@ -144,7 +144,7 @@ export default function EmploymentForm() {
             value={formData.email}
             onChange={handleInputChange}
             required
-            className="mt-2 w-full rounded-lg border border-border-light bg-white px-4 py-2 text-text-primary placeholder-text-tertiary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="mt-2 w-full rounded-lg border border-border bg-surface-2 px-4 py-2 text-text-primary placeholder-text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             placeholder="your.email@example.com"
           />
         </div>
@@ -156,7 +156,7 @@ export default function EmploymentForm() {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className="mt-2 w-full rounded-lg border border-border-light bg-white px-4 py-2 text-text-primary placeholder-text-tertiary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="mt-2 w-full rounded-lg border border-border bg-surface-2 px-4 py-2 text-text-primary placeholder-text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             placeholder="+880 1234 567890"
           />
         </div>
@@ -169,14 +169,14 @@ export default function EmploymentForm() {
             value={formData.position}
             onChange={handleInputChange}
             required
-            className="mt-2 w-full rounded-lg border border-border-light bg-white px-4 py-2 text-text-primary placeholder-text-tertiary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="mt-2 w-full rounded-lg border border-border bg-surface-2 px-4 py-2 text-text-primary placeholder-text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             placeholder="e.g., Software Engineer, Designer"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-text-primary">Resume (PDF or Word) *</label>
-          <div className="mt-2 flex items-center justify-center rounded-lg border-2 border-dashed border-border-light bg-gray-50 p-6 hover:border-primary/50 hover:bg-primary/5 transition-colors">
+          <div className="mt-2 flex items-center justify-center rounded-lg border-2 border-dashed border-border bg-surface-2 p-6 transition-colors hover:border-accent/50 hover:bg-accent-bg/40">
             <div className="flex flex-col items-center gap-2">
               <Upload className="h-6 w-6 text-text-secondary" />
               <input
@@ -188,11 +188,11 @@ export default function EmploymentForm() {
                 required
               />
               <label htmlFor="resume" className="cursor-pointer">
-                <span className="text-sm font-medium text-primary hover:text-primary/80">Click to upload</span>
+                <span className="text-sm font-medium text-accent hover:text-accent-h">Click to upload</span>
               </label>
-              <p className="text-xs text-text-tertiary">or drag and drop</p>
-              <p className="text-xs text-text-tertiary">PDF or Word (max 5MB)</p>
-              {file && <p className="mt-2 text-sm font-medium text-green-600">✓ {file.name}</p>}
+              <p className="text-xs text-text-muted">or drag and drop</p>
+              <p className="text-xs text-text-muted">PDF or Word (max 5MB)</p>
+              {file && <p className="mt-2 text-sm font-medium text-accent">✓ {file.name}</p>}
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function EmploymentForm() {
             value={formData.cover_letter}
             onChange={handleInputChange}
             rows={5}
-            className="mt-2 w-full rounded-lg border border-border-light bg-white px-4 py-2 text-text-primary placeholder-text-tertiary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="mt-2 w-full rounded-lg border border-border bg-surface-2 px-4 py-2 text-text-primary placeholder-text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             placeholder="Tell us about yourself and why you're interested in this position..."
           />
         </div>
@@ -219,7 +219,7 @@ export default function EmploymentForm() {
         <button
           type="submit"
           disabled={uploading}
-          className="w-full rounded-lg bg-primary px-6 py-3 font-medium text-white hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="sticky bottom-4 z-10 w-full rounded-lg bg-accent px-6 py-3 font-medium text-white shadow-soft hover:bg-accent-h disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
         >
           {uploading ? "Submitting..." : "Submit Application"}
         </button>
