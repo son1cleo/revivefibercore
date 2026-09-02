@@ -9,8 +9,6 @@ const initialState = {
   message: ""
 };
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/sajidurrahmansiddiky@gmail.com";
-
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -27,28 +25,22 @@ export default function ContactForm() {
     setStatus(null);
 
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          subject: form.subject,
-          message: form.message,
-          _subject: `Website Contact: ${form.subject}`,
-          _template: "table",
-          _captcha: "false"
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to send message.");
+        throw new Error(result.message || "Failed to send message.");
       }
 
       setStatus({ type: "success", message: "Thanks! Your message has been sent." });
       setForm(initialState);
     } catch (error) {
-      setStatus({ type: "error", message: "Unable to send message right now. Please try again or reach us on WhatsApp." });
+      setStatus({ type: "error", message: error.message });
     } finally {
       setLoading(false);
     }

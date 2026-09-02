@@ -60,15 +60,27 @@ create table if not exists public.clients (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  subject text not null,
+  message text not null,
+  read boolean not null default false,
+  created_at timestamptz not null default now()
+);
+
 create index if not exists employment_applications_status_idx on public.employment_applications (status);
 create index if not exists employment_applications_email_idx on public.employment_applications (email);
 create index if not exists clients_company_idx on public.clients (company);
 create index if not exists clients_email_idx on public.clients (email);
+create index if not exists contact_messages_created_at_idx on public.contact_messages (created_at desc);
 
 alter table public.blog_posts enable row level security;
 alter table public.work_items enable row level security;
 alter table public.employment_applications enable row level security;
 alter table public.clients enable row level security;
+alter table public.contact_messages enable row level security;
 
 -- Public can read only published records.
 drop policy if exists "Public can read published blogs" on public.blog_posts;
@@ -112,6 +124,26 @@ drop policy if exists "Authenticated can read all clients" on public.clients;
 create policy "Authenticated can read all clients"
   on public.clients
   for select
+  using (auth.role() = 'authenticated');
+
+-- Contact messages are written only via the server (service role), never directly by the public.
+-- Admin panel reads/updates/deletes them as an authenticated user.
+drop policy if exists "Authenticated can read all contact messages" on public.contact_messages;
+create policy "Authenticated can read all contact messages"
+  on public.contact_messages
+  for select
+  using (auth.role() = 'authenticated');
+
+drop policy if exists "Authenticated can update contact messages" on public.contact_messages;
+create policy "Authenticated can update contact messages"
+  on public.contact_messages
+  for update
+  using (auth.role() = 'authenticated');
+
+drop policy if exists "Authenticated can delete contact messages" on public.contact_messages;
+create policy "Authenticated can delete contact messages"
+  on public.contact_messages
+  for delete
   using (auth.role() = 'authenticated');
 
 -- Create storage buckets in Supabase dashboard:

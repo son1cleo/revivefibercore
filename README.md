@@ -5,10 +5,10 @@ Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Ro
 ## Current Status
 
 - Public site pages are implemented and responsive.
-- Admin dashboard supports work item and client create, edit, publish, and delete.
+- Admin dashboard supports product, work item, and client create, edit, publish, and delete.
 - Supabase Postgres + Storage integration is active.
-- Contact form delivers via FormSubmit.co (no SMTP credentials required).
-- Admin panel has a dark-toned sidebar matching the brand palette.
+- Contact form submissions save directly to the database and show under Admin → Messages (no email involved).
+- Admin panel has a dark-toned sidebar matching the brand palette, and auto-logs out after 90 seconds of inactivity.
 
 ## Stack
 
@@ -16,8 +16,7 @@ Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Ro
 - React 19
 - Tailwind CSS
 - Framer Motion
-- Supabase (Postgres, Storage, optional Auth)
-- FormSubmit.co (contact form email delivery — no backend mail server needed)
+- Supabase (Postgres, Storage, Auth)
 
 ## Local Setup
 
@@ -46,11 +45,11 @@ ADMIN_FALLBACK_EMAIL=admin@revivefibercore.local
 NEXT_PUBLIC_WHATSAPP_NUMBER=8801988831521
 ```
 
-No SMTP configuration is needed — the contact form (`components/ContactForm.jsx`) posts directly to FormSubmit.co, which handles delivery.
+No SMTP configuration is needed — the contact form saves straight to the `contact_messages` table.
 
 4. Initialize Supabase schema:
 
-- Run SQL from [supabase/schema.sql](supabase/schema.sql) in Supabase SQL Editor.
+- Run SQL from [supabase/schema.sql](supabase/schema.sql) in Supabase SQL Editor. This includes the `contact_messages` table added for the Messages admin section — if you're updating an existing project rather than starting fresh, just run the new `contact_messages` block plus its policies from that file (they use `create table if not exists` / `drop policy if exists`, so re-running the whole file is also safe).
 - Ensure the `work-media` storage bucket exists and is public.
 
 5. Start dev server:
@@ -71,14 +70,18 @@ npm run dev
 
 ### Admin
 
-- /admin/login
+- /admin/login (outside the auth-protected layout — see Notes)
 - /admin
+- /admin/products
+- /admin/products/new
+- /admin/products/[id]
 - /admin/work
 - /admin/work/new
 - /admin/work/[id]
 - /admin/clients
 - /admin/clients/new
 - /admin/clients/[id]
+- /admin/messages
 
 ## Admin Access Modes
 
@@ -98,16 +101,20 @@ npm run dev
 
 ### Contact
 
-Handled client-side by `components/ContactForm.jsx`, which posts directly to `https://formsubmit.co/ajax/<recipient-email>`. No backend route or SMTP setup is required. The recipient currently receives a one-time confirmation email from FormSubmit the first time a message is sent — click the link in it to activate delivery.
+- `POST /api/contact`
+- JSON body: `{ name, email, subject, message }`
+- Inserts a row into `contact_messages` (via the service-role client, so no public insert policy is needed). No email is sent. Submissions appear under Admin → Messages, newest first, with an unread indicator.
 
 ### Admin CMS
 
-- `POST /api/admin/work`
+- `POST /api/admin/work` — also used by the Products editor (Products and Work Items share the `work_items` table; Products is a filtered, purpose-built view over the same data)
 - `PATCH /api/admin/work/[id]`
 - `DELETE /api/admin/work/[id]`
 - `POST /api/admin/clients`
 - `PATCH /api/admin/clients/[id]`
 - `DELETE /api/admin/clients/[id]`
+- `PATCH /api/admin/messages/[id]` — mark read/unread
+- `DELETE /api/admin/messages/[id]`
 - `POST /api/admin/upload`
 - `POST /api/admin/auth/logout`
 
@@ -139,3 +146,5 @@ Recent verification includes:
 
 - If images fail from Supabase Storage, verify host is listed in [next.config.mjs](next.config.mjs).
 - If SQL policy creation fails on `IF NOT EXISTS`, use the current schema file version (it uses `DROP POLICY IF EXISTS` + `CREATE POLICY`).
+- Protected admin pages live under `app/admin/(protected)/` (a route group), while `app/admin/login/` sits outside it. This matters: the protected layout redirects unauthenticated visitors to `/admin/login`, so the login page must never be wrapped by that same layout, or visiting it would redirect to itself in a loop. This is invisible in `npm run dev` (auth auto-bypasses there) and only shows up under `npm run start` / production — always smoke-test the login flow with a production build after touching admin routing.
+- The admin panel auto-logs out after 90 seconds of inactivity (`components/admin/AdminIdleLogout.jsx`), resetting on mouse/keyboard/scroll/touch activity.
