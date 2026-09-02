@@ -19,7 +19,17 @@ export default async function AdminWorkPage() {
           </Link>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6 rounded-xl border border-accent/30 bg-accent-bg p-4 text-sm text-text-secondary">
+          <p className="font-semibold text-text-primary">Where these show up</p>
+          <p className="mt-1">
+            Every published item here appears on the <strong>Work</strong> page. Items tagged{" "}
+            <strong>Machine In Production</strong> or <strong>Packing & Export</strong> also appear under{" "}
+            <strong>Our Products → Recycled Fibers</strong>, and items tagged <strong>Wiping Rags</strong> appear under{" "}
+            <strong>Our Products → Wiping Rags</strong>. Use the Category field in the editor to control this.
+          </p>
+        </div>
+
+        <div className="mt-6">
           <WorkList items={items} />
         </div>
       </div>

@@ -1,19 +1,19 @@
 "use client";
 
-import { Factory, Leaf, Recycle, Sparkles } from "lucide-react";
+import { BadgeDollarSign, Cog, HeartHandshake, ShieldCheck, Truck } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
-const iconMap = { Recycle, Factory, Leaf, Sparkles };
+const iconMap = { ShieldCheck, Cog, BadgeDollarSign, Truck, HeartHandshake };
 
 export default function WhatWeDo({ items }) {
   return (
     <AnimatedSection className="page-shell py-14">
-      <p className="section-label">02 - Services</p>
-      <h2 className="mt-3 font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.12] text-text-primary">Built for Circular Manufacturing</h2>
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <p className="section-label">02 - Why Choose Us</p>
+      <h2 className="mt-3 font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.12] text-text-primary">Why Choose Revive Fiber Co.?</h2>
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {items.map((item, index) => {
-          const Icon = iconMap[item.icon] || Leaf;
+          const Icon = iconMap[item.icon] || ShieldCheck;
 
           return (
             <motion.article

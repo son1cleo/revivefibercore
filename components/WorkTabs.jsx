@@ -4,11 +4,10 @@ import { useMemo, useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
-import BlogCard from "@/components/BlogCard";
 
-const tabs = ["Images", "Videos", "Blogs"];
+const tabs = ["Images", "Videos"];
 
-export default function WorkTabs({ images, videos, blogs }) {
+export default function WorkTabs({ images, videos }) {
   const [activeTab, setActiveTab] = useState("Images");
 
   const activeContent = useMemo(() => {
@@ -16,18 +15,8 @@ export default function WorkTabs({ images, videos, blogs }) {
       return <ImageGallery items={images} />;
     }
 
-    if (activeTab === "Videos") {
-      return <VideoGallery items={videos} />;
-    }
-
-    return (
-      <div className="grid gap-5 md:grid-cols-2">
-        {blogs.map((post) => (
-          <BlogCard key={post.slug} post={post} />
-        ))}
-      </div>
-    );
-  }, [activeTab, images, videos, blogs]);
+    return <VideoGallery items={videos} />;
+  }, [activeTab, images, videos]);
 
   return (
     <>

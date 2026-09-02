@@ -1,10 +1,27 @@
+import { Factory, Globe2, MapPin, Package, Users, Warehouse } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import { team, timeline } from "@/lib/content";
+import IconCardGrid from "@/components/IconCardGrid";
+import TeamGrid from "@/components/TeamGrid";
+import { facilities, globalMarkets, rawMaterials, recyclingProcess, team } from "@/lib/content";
 
 export const metadata = {
   title: "About | Revive Fiber Co",
-  description: "Learn about Revive Fiber Co's mission, values, and sustainability milestones."
+  description: "Learn about Revive Fiber Co's mission, values, recycling process, and global reach."
 };
+
+const facilityIcons = [MapPin, Factory, Warehouse, Users, Package];
+
+const coreValues = [
+  { title: "Sustainability", text: "We reduce landfill dependency by designing processes around reuse and circularity.", icon: "Leaf" },
+  { title: "Quality", text: "Every batch is monitored for consistency, performance, and reliable production outcomes.", icon: "ShieldCheck" },
+  { title: "Community", text: "We collaborate with local suppliers and partners to create long-term shared impact.", icon: "HeartHandshake" }
+];
+
+const processIcons = ["Package", "Palette", "Scissors", "Cog", "Wind", "ClipboardCheck", "Box", "Truck"];
+const processItems = recyclingProcess.map((item, index) => ({ ...item, icon: processIcons[index] || "Cog" }));
+
+const materialIcons = ["Shirt", "Layers", "Scissors", "Recycle", "Package"];
+const materialItems = rawMaterials.map((item, index) => ({ ...item, icon: materialIcons[index] || "Recycle" }));
 
 export default function AboutPage() {
   return (
@@ -18,47 +35,69 @@ export default function AboutPage() {
         </p>
       </AnimatedSection>
 
-      <AnimatedSection className="mt-6">
+      <AnimatedSection className="mt-12">
         <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Core Values</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          {[
-            ["Sustainability", "We reduce landfill dependency by designing processes around reuse and circularity."],
-            ["Quality", "Every batch is monitored for consistency, performance, and reliable production outcomes."],
-            ["Community", "We collaborate with local suppliers and partners to create long-term shared impact."]
-          ].map(([title, text]) => (
-            <article key={title} className="panel-muted p-5">
-              <h3 className="font-semibold text-text-primary">{title}</h3>
-              <p className="mt-2 text-sm text-text-secondary">{text}</p>
-            </article>
+        <IconCardGrid items={coreValues} columns="md:grid-cols-3" />
+      </AnimatedSection>
+
+      <AnimatedSection className="mt-14">
+        <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Our Recycling Process</h2>
+        <p className="mt-2 text-sm text-text-secondary">Eight controlled stages turn textile waste into export-ready fiber.</p>
+        <IconCardGrid items={processItems} columns="sm:grid-cols-2 lg:grid-cols-4" />
+      </AnimatedSection>
+
+      <AnimatedSection className="mt-14">
+        <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">What We Recycle</h2>
+        <p className="mt-2 text-sm italic text-accent">Turning waste into value, for a greener future.</p>
+        <IconCardGrid items={materialItems} columns="sm:grid-cols-2 md:grid-cols-3" />
+      </AnimatedSection>
+
+      <AnimatedSection className="mt-14">
+        <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Our Facilities</h2>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {facilities.map((item, index) => {
+            const Icon = facilityIcons[index] || MapPin;
+
+            return (
+              <article
+                key={item.label}
+                className="panel-muted flex items-start gap-4 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-soft"
+              >
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-bg text-accent">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-text-primary">{item.label}</h3>
+                  <p className="mt-1 text-sm text-text-secondary">{item.value}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="mt-14">
+        <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Global Reach</h2>
+        <p className="mt-2 max-w-2xl text-sm text-text-secondary">
+          Our premium recycled cotton fiber has strong and growing demand across key international spinning markets.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          {globalMarkets.map((market) => (
+            <span
+              key={market}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-accent hover:text-text-primary"
+            >
+              <Globe2 className="h-4 w-4 text-accent" />
+              {market}
+            </span>
           ))}
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="mt-6">
-        <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Milestones</h2>
-        <div className="mt-6 space-y-4 border-l-2 border-accent/35 pl-6">
-          {timeline.map((item) => (
-            <article key={item.year} className="panel relative p-5">
-              <span className="absolute -left-10 top-6 h-3 w-3 rounded-full bg-accent" />
-              <p className="text-xs uppercase tracking-wide text-text-muted">{item.year}</p>
-              <h3 className="mt-1 font-semibold text-text-primary">{item.title}</h3>
-              <p className="mt-2 text-sm text-text-secondary">{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </AnimatedSection>
-
-      <AnimatedSection className="mt-6">
+      <AnimatedSection className="mt-14">
         <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Team</h2>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {team.map((member) => (
-            <article key={member.name} className="panel-muted p-5">
-              <div className="h-24 rounded-xl bg-gradient-to-br from-[#d8ebd8] to-[#c8e2cb]" />
-              <h3 className="mt-4 font-semibold text-text-primary">{member.name}</h3>
-              <p className="text-sm text-text-secondary">{member.role}</p>
-            </article>
-          ))}
-        </div>
+        <p className="mt-2 text-sm text-text-secondary">Click a name to view contact details.</p>
+        <TeamGrid team={team} />
       </AnimatedSection>
     </div>
   );

@@ -3,9 +3,8 @@ import AboutSnippet from "@/components/AboutSnippet";
 import WhatWeDo from "@/components/WhatWeDo";
 import WorkPreview from "@/components/WorkPreview";
 import StatsBar from "@/components/StatsBar";
-import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
-import { featuredWork, homeStats, services, testimonials } from "@/lib/content";
+import { featuredWork, homeStats, whyChooseUs } from "@/lib/content";
 
 export const metadata = {
   title: "Home | Revive Fiber Co",
@@ -17,10 +16,9 @@ export default function HomePage() {
     <>
       <HeroSection />
       <AboutSnippet />
-      <WhatWeDo items={services} />
+      <WhatWeDo items={whyChooseUs} />
       <WorkPreview items={featuredWork} />
       <StatsBar stats={homeStats} />
-      <Testimonials items={testimonials} />
       <CTABanner />
     </>
   );

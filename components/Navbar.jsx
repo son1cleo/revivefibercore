@@ -11,7 +11,6 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/work", label: "Work" },
-  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Our Products" }
 ];
 
@@ -52,7 +51,7 @@ export default function Navbar() {
             href="/work-with-us"
             className="inline-flex items-center justify-center rounded-full border border-border bg-accent-bg px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white hover:shadow-soft dark:border-accent/30 dark:bg-accent dark:text-white dark:hover:bg-accent-h"
           >
-            Work With Us
+            Contact With Us
           </Link>
         </div>
 

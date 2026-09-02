@@ -154,11 +154,14 @@ body::after {
 .ticker-track {
   display: flex;
   width: max-content;
-  gap: 2.2rem;
   padding: 0.9rem 0;
   color: var(--color-accent);
   font-family: var(--font-mono), monospace;
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.15em;
+}
+
+.ticker-track span {
+  padding-right: 2.2rem;
 }

@@ -1,14 +1,14 @@
 # Revive Fiber Co
 
-Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Router, featuring a Supabase-backed admin CMS for blogs and work media.
+Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Router, featuring a Supabase-backed admin CMS for portfolio work media and client profiles.
 
 ## Current Status
 
 - Public site pages are implemented and responsive.
-- Admin dashboard supports blog/work create, edit, publish, and delete.
+- Admin dashboard supports work item and client create, edit, publish, and delete.
 - Supabase Postgres + Storage integration is active.
 - Contact form API endpoint is implemented.
-- Latest redesign pass follows a clean, rounded card UI direction.
+- Admin panel has a dark-toned sidebar matching the brand palette.
 
 ## Stack
 
@@ -55,9 +55,7 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=8801988831521
 4. Initialize Supabase schema:
 
 - Run SQL from [supabase/schema.sql](supabase/schema.sql) in Supabase SQL Editor.
-- Ensure storage buckets exist and are public:
-	- `blog-media`
-	- `work-media`
+- Ensure the `work-media` storage bucket exists and is public.
 
 5. Start dev server:
 
@@ -72,20 +70,19 @@ npm run dev
 - /
 - /about
 - /work
-- /blog
-- /blog/[slug]
-- /contact
+- /contact (Our Products)
+- /work-with-us (Contact With Us)
 
 ### Admin
 
 - /admin/login
 - /admin
-- /admin/blogs
-- /admin/blogs/new
-- /admin/blogs/[id]
 - /admin/work
 - /admin/work/new
 - /admin/work/[id]
+- /admin/clients
+- /admin/clients/new
+- /admin/clients/[id]
 
 ## Admin Access Modes
 
@@ -110,14 +107,24 @@ npm run dev
 
 ### Admin CMS
 
-- `POST /api/admin/posts`
-- `PATCH /api/admin/posts/[id]`
-- `DELETE /api/admin/posts/[id]`
 - `POST /api/admin/work`
 - `PATCH /api/admin/work/[id]`
 - `DELETE /api/admin/work/[id]`
+- `POST /api/admin/clients`
+- `PATCH /api/admin/clients/[id]`
+- `DELETE /api/admin/clients/[id]`
 - `POST /api/admin/upload`
 - `POST /api/admin/auth/logout`
+
+### Work Item Categories
+
+Setting a work item's **Category** in the admin editor controls where it shows on the public site:
+
+- `Machine In Production` / `Packing & Export` → Our Products → Recycled Fibers, and the Work page
+- `Wiping Rags` → Our Products → Wiping Rags, and the Work page
+- `General` → Work page only
+
+Videos should be embed links (YouTube/Vimeo `.../embed/...` URLs) pasted into the Media URL field, not raw file uploads — see the in-editor guidance.
 
 ## Build and Verification
 

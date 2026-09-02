@@ -29,17 +29,23 @@ export default function HeroSection() {
           00 - Home
         </motion.p>
 
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.03 }}
+          className="mt-4 font-display text-2xl text-text-secondary sm:text-3xl"
+        >
+          Revive Fiber Co.
+        </motion.p>
+
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.07 }}
-          className="mt-4 max-w-6xl font-display text-[clamp(3.4rem,10vw,8.2rem)] leading-[0.98] text-text-primary"
+          className="mt-2 max-w-5xl font-display text-[clamp(2.4rem,6.5vw,6.4rem)] leading-[1.08] text-text-primary"
         >
-          Reviving
-          <br />
-          Fibers With
-          <br />
-          <em className="font-display italic text-accent">Precision</em>
+          Premium Recycled Cotton Fiber for a{" "}
+          <em className="font-display italic text-accent">Circular Future</em>
         </motion.h1>
 
         <motion.div
@@ -49,7 +55,7 @@ export default function HeroSection() {
           className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
         >
           <p className="max-w-xl text-base leading-relaxed text-text-secondary md:text-[1.08rem]">
-            From solar-ready recovery lines to full-scale recycled fiber programs, we help brands reduce waste and build resilient circular supply systems.
+            We transform textile waste into high-quality recycled cotton fiber for spinning, bedding, automotive, insulation, and other sustainable applications.
           </p>
 
           <div className="flex flex-wrap gap-3 z-20">
@@ -67,7 +73,7 @@ export default function HeroSection() {
         <div className="ticker-track animate-marquee">
           {new Array(2).fill(0).map((_, i) => (
             <span key={i} className="whitespace-nowrap">
-              Sustainable · Recycled · Circular Eco · Sustainable · Recycled · Circular Eco
+              Sustainable · Recycled · Circular · Eco · Sustainable · Recycled · Circular · Eco
             </span>
           ))}
         </div>
