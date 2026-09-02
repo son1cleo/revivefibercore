@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import ImageGallery from "@/components/ImageGallery";
+import ImageSlideshow from "@/components/ImageSlideshow";
+import { sustainableSamplingImages } from "@/lib/content";
 
 export default function ProductsShowcase({ categories }) {
   const [activeCategory, setActiveCategory] = useState(categories[0].key);
@@ -53,6 +55,8 @@ export default function ProductsShowcase({ categories }) {
             <p className="mt-3 text-xs text-text-muted">
               Custom colors available on request — tailored shades for your mill&apos;s specifications.
             </p>
+
+            <ImageSlideshow items={sustainableSamplingImages} />
           </div>
         )}
 

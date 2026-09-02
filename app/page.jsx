@@ -1,10 +1,9 @@
 import HeroSection from "@/components/HeroSection";
 import AboutSnippet from "@/components/AboutSnippet";
 import WhatWeDo from "@/components/WhatWeDo";
-import WorkPreview from "@/components/WorkPreview";
 import StatsBar from "@/components/StatsBar";
 import CTABanner from "@/components/CTABanner";
-import { featuredWork, homeStats, whyChooseUs } from "@/lib/content";
+import { homeStats, whyChooseUs } from "@/lib/content";
 
 export const metadata = {
   title: "Home | Revive Fiber Co",
@@ -17,7 +16,6 @@ export default function HomePage() {
       <HeroSection />
       <AboutSnippet />
       <WhatWeDo items={whyChooseUs} />
-      <WorkPreview items={featuredWork} />
       <StatsBar stats={homeStats} />
       <CTABanner />
     </>
