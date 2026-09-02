@@ -7,7 +7,7 @@ Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Ro
 - Public site pages are implemented and responsive.
 - Admin dashboard supports work item and client create, edit, publish, and delete.
 - Supabase Postgres + Storage integration is active.
-- Contact form API endpoint is implemented.
+- Contact form delivers via FormSubmit.co (no SMTP credentials required).
 - Admin panel has a dark-toned sidebar matching the brand palette.
 
 ## Stack
@@ -17,7 +17,7 @@ Revive Fiber Co is a modern, eco-focused showcase site built with Next.js App Ro
 - Tailwind CSS
 - Framer Motion
 - Supabase (Postgres, Storage, optional Auth)
-- Nodemailer (contact form email delivery)
+- FormSubmit.co (contact form email delivery — no backend mail server needed)
 
 ## Local Setup
 
@@ -43,14 +43,10 @@ ADMIN_ALLOWED_EMAILS=
 ADMIN_DISABLE_AUTH=false
 ADMIN_FALLBACK_EMAIL=admin@revivefibercore.local
 
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=
-SMTP_PASS=
-CONTACT_TO=
-
 NEXT_PUBLIC_WHATSAPP_NUMBER=8801988831521
 ```
+
+No SMTP configuration is needed — the contact form (`components/ContactForm.jsx`) posts directly to FormSubmit.co, which handles delivery.
 
 4. Initialize Supabase schema:
 
@@ -102,8 +98,7 @@ npm run dev
 
 ### Contact
 
-- `POST /api/contact`
-- JSON body: `{ name, email, subject, message }`
+Handled client-side by `components/ContactForm.jsx`, which posts directly to `https://formsubmit.co/ajax/<recipient-email>`. No backend route or SMTP setup is required. The recipient currently receives a one-time confirmation email from FormSubmit the first time a message is sent — click the link in it to activate delivery.
 
 ### Admin CMS
 
