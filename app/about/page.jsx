@@ -20,7 +20,7 @@ const coreValues = [
 const processIcons = ["Package", "Palette", "Scissors", "Cog", "Wind", "ClipboardCheck", "Box", "Truck"];
 const processItems = recyclingProcess.map((item, index) => ({ ...item, icon: processIcons[index] || "Cog" }));
 
-const materialIcons = ["Shirt", "Layers", "Scissors", "Recycle", "Package"];
+const materialIcons = ["Shirt", "Layers", "Scissors", "Recycle", "Package", "Box"];
 const materialItems = rawMaterials.map((item, index) => ({ ...item, icon: materialIcons[index] || "Recycle" }));
 
 export default function AboutPage() {
