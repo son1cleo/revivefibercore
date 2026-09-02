@@ -49,7 +49,7 @@ export default function Navbar() {
 
           <Link
             href="/work-with-us"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-accent-bg px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white hover:shadow-soft dark:border-accent/30 dark:bg-accent dark:text-white dark:hover:bg-accent-h"
+            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-border bg-accent-bg px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white hover:shadow-soft dark:border-accent/30 dark:bg-accent dark:text-white dark:hover:bg-accent-h"
           >
             Contact With Us
           </Link>
@@ -86,10 +86,10 @@ export default function Navbar() {
               ))}
               <Link
                 href="/work-with-us"
-                className="mt-2 inline-flex items-center justify-center rounded-full border border-border bg-accent-bg px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.08em] text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white hover:shadow-soft dark:border-accent/30 dark:bg-accent dark:text-white dark:hover:bg-accent-h"
+                className="mt-2 inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-accent-bg px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.08em] text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white hover:shadow-soft dark:border-accent/30 dark:bg-accent dark:text-white dark:hover:bg-accent-h"
                 onClick={() => setOpen(false)}
               >
-                Work With Us
+                Contact With Us
               </Link>
             </div>
           </motion.div>

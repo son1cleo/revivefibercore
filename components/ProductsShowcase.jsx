@@ -24,7 +24,7 @@ export default function ProductsShowcase({ categories }) {
             key={item.key}
             type="button"
             onClick={() => handleCategoryChange(item.key)}
-            className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition ${
+            className={`whitespace-nowrap rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition ${
               activeCategory === item.key ? "bg-accent text-bg" : "border border-border bg-surface text-text-secondary"
             }`}
           >
@@ -91,7 +91,7 @@ export default function ProductsShowcase({ categories }) {
                   key={sub.key}
                   type="button"
                   onClick={() => setActiveSub(sub.key)}
-                  className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.06em] transition ${
+                  className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.06em] transition ${
                     activeSub === sub.key
                       ? "border border-accent bg-accent-bg text-accent"
                       : "border border-border text-text-secondary hover:text-text-primary"

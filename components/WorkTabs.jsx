@@ -27,7 +27,7 @@ export default function WorkTabs({ images, videos }) {
               key={tab}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition ${
+              className={`whitespace-nowrap rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition ${
                 activeTab === tab ? "bg-accent text-bg" : "border border-border bg-surface text-text-secondary"
               }`}
             >
