@@ -96,6 +96,12 @@ export default function ProductEditor({ item = null }) {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    if (!form.mediaUrl) {
+      setMessage("Please upload an image first.");
+      return;
+    }
+
     setSaving(true);
     setMessage("");
 
@@ -173,7 +179,20 @@ export default function ProductEditor({ item = null }) {
         Controls where this photo shows on the Our Products page.
       </p>
 
-      <Field label="Media URL" name="mediaUrl" value={form.mediaUrl} onChange={onChange} required />
+      <label className="block text-sm font-medium text-text-secondary">
+        Photo
+        <input
+          type="file"
+          accept="image/*"
+          onChange={onUpload}
+          className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary"
+        />
+      </label>
+
+      {form.mediaUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={form.mediaUrl} alt="Uploaded preview" className="h-40 w-full rounded-xl border border-border object-cover" />
+      ) : null}
 
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Display Order" name="displayOrder" value={form.displayOrder} onChange={onChange} type="number" />
@@ -182,17 +201,6 @@ export default function ProductEditor({ item = null }) {
           Publish now
         </label>
       </div>
-
-      <label className="block text-sm font-medium text-text-secondary">
-        Upload Image
-        <input
-          type="file"
-          accept="image/*"
-          onChange={onUpload}
-          className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary"
-        />
-        <span className="mt-1 block text-xs text-text-muted">This fills in the Media URL field above automatically.</span>
-      </label>
 
       <label className="block text-sm font-medium text-text-secondary">
         Description

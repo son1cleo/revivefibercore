@@ -8,7 +8,6 @@ const initialState = {
   description: "",
   mediaType: "image",
   mediaUrl: "",
-  thumbnailUrl: "",
   category: "General",
   displayOrder: "",
   published: false
@@ -30,7 +29,6 @@ export default function WorkEditor({ item = null }) {
           description: item.description || "",
           mediaType: item.media_type || "image",
           mediaUrl: item.media_url || "",
-          thumbnailUrl: item.thumbnail_url || "",
           category: item.category || "General",
           displayOrder: item.display_order?.toString() || "",
           published: Boolean(item.published)
@@ -44,6 +42,10 @@ export default function WorkEditor({ item = null }) {
   const onChange = (event) => {
     const { name, value, type, checked } = event.target;
     setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+  };
+
+  const onMediaTypeChange = (event) => {
+    setForm((prev) => ({ ...prev, mediaType: event.target.value, mediaUrl: "" }));
   };
 
   const onUpload = async (event) => {
@@ -84,6 +86,12 @@ export default function WorkEditor({ item = null }) {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    if (!form.mediaUrl) {
+      setMessage(form.mediaType === "video" ? "Please paste a video link first." : "Please upload a photo first.");
+      return;
+    }
+
     setSaving(true);
     setMessage("");
 
@@ -126,7 +134,7 @@ export default function WorkEditor({ item = null }) {
           <select
             name="mediaType"
             value={form.mediaType}
-            onChange={onChange}
+            onChange={onMediaTypeChange}
             className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
           >
             <option value="image">Image</option>
@@ -153,27 +161,26 @@ export default function WorkEditor({ item = null }) {
       {selectedCategoryHint ? <p className="!mt-1 text-xs text-text-muted">{selectedCategoryHint}</p> : null}
 
       {form.mediaType === "video" ? (
-        <div className="rounded-xl border border-accent/30 bg-accent-bg p-4 text-sm text-text-secondary">
-          <p className="font-semibold text-text-primary">Videos use an embed link, not a file upload.</p>
-          <p className="mt-1">
-            Upload your video to YouTube or Vimeo (Unlisted is fine), then paste its <strong>embed URL</strong> below — e.g.{" "}
-            <code className="rounded bg-surface px-1.5 py-0.5 text-xs">https://www.youtube.com/embed/VIDEO_ID</code>. Uploading a raw video
-            file here won&apos;t play correctly and will quickly use up storage space.
-          </p>
-        </div>
-      ) : null}
+        <>
+          <div className="rounded-xl border border-accent/30 bg-accent-bg p-4 text-sm text-text-secondary">
+            <p className="font-semibold text-text-primary">Videos use a link, not a file upload.</p>
+            <p className="mt-1">
+              Upload your video to YouTube or Vimeo (Unlisted is fine), then paste its <strong>embed link</strong> below — e.g.{" "}
+              <code className="rounded bg-surface px-1.5 py-0.5 text-xs">https://www.youtube.com/embed/VIDEO_ID</code>. Uploading a raw video
+              file here won&apos;t play correctly and will quickly use up storage space.
+            </p>
+          </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <Field
-          label="Media URL"
-          name="mediaUrl"
-          value={form.mediaUrl}
-          onChange={onChange}
-          required
-          placeholder={form.mediaType === "video" ? "https://www.youtube.com/embed/VIDEO_ID" : undefined}
-        />
-        <Field label="Thumbnail URL" name="thumbnailUrl" value={form.thumbnailUrl} onChange={onChange} />
-      </div>
+          <Field
+            label="Video Link"
+            name="mediaUrl"
+            value={form.mediaUrl}
+            onChange={onChange}
+            required
+            placeholder="https://www.youtube.com/embed/VIDEO_ID"
+          />
+        </>
+      ) : null}
 
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Display Order" name="displayOrder" value={form.displayOrder} onChange={onChange} type="number" />
@@ -184,16 +191,22 @@ export default function WorkEditor({ item = null }) {
       </div>
 
       {form.mediaType === "image" ? (
-        <label className="block text-sm font-medium text-text-secondary">
-          Upload Image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={onUpload}
-            className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary"
-          />
-          <span className="mt-1 block text-xs text-text-muted">This fills in the Media URL field above automatically.</span>
-        </label>
+        <>
+          <label className="block text-sm font-medium text-text-secondary">
+            Photo
+            <input
+              type="file"
+              accept="image/*"
+              onChange={onUpload}
+              className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary"
+            />
+          </label>
+
+          {form.mediaUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={form.mediaUrl} alt="Uploaded preview" className="h-40 w-full rounded-xl border border-border object-cover" />
+          ) : null}
+        </>
       ) : null}
 
       <label className="block text-sm font-medium text-text-secondary">
