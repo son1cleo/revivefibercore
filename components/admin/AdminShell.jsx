@@ -3,12 +3,13 @@
 import { useState } from "react";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminTopbar from "@/components/admin/AdminTopbar";
+import { AdminSearchProvider } from "@/components/admin/AdminSearchContext";
 
 export default function AdminShell({ email, children }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="grid gap-6 md:grid-cols-[250px_1fr] md:items-start">
+    <AdminSearchProvider>
       {open && (
         <button
           type="button"
@@ -18,12 +19,14 @@ export default function AdminShell({ email, children }) {
         />
       )}
 
-      <AdminSidebar email={email} open={open} onNavigate={() => setOpen(false)} />
+      <AdminSidebar open={open} onNavigate={() => setOpen(false)} />
 
-      <div className="min-w-0">
-        <AdminTopbar open={open} onToggle={() => setOpen((value) => !value)} />
-        <section className="panel p-7 md:p-8">{children}</section>
+      <div className="min-w-0 md:pl-72">
+        <div className="page-shell py-4">
+          <AdminTopbar email={email} open={open} onToggle={() => setOpen((value) => !value)} />
+          <section className="panel p-7 md:p-8">{children}</section>
+        </div>
       </div>
-    </div>
+    </AdminSearchProvider>
   );
 }

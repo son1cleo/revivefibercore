@@ -1,69 +1,54 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMemo } from "react";
+import AdminManagedTable from "@/components/admin/AdminManagedTable";
+
+const columns = [
+  {
+    key: "title",
+    label: "Title",
+    render: (item) => (
+      <div>
+        <p className="font-medium text-text-primary">{item.title}</p>
+        {item.description ? <p className="mt-0.5 max-w-xs truncate text-xs text-text-secondary">{item.description}</p> : null}
+      </div>
+    )
+  },
+  {
+    key: "category",
+    label: "Category",
+    render: (item) => <span className="text-text-secondary">{item.category || "General"}</span>
+  },
+  {
+    key: "media_type",
+    label: "Media Type",
+    render: (item) => <span className="capitalize text-text-secondary">{item.media_type}</span>
+  }
+];
 
 export default function WorkList({ items }) {
-  const router = useRouter();
-  const [deletingId, setDeletingId] = useState(null);
+  const categoryOptions = useMemo(() => {
+    const values = Array.from(new Set(items.map((item) => item.category).filter(Boolean)));
+    return values.map((value) => ({ value, label: value }));
+  }, [items]);
 
-  const onDelete = async (id) => {
-    const confirmed = window.confirm("Delete this work item?");
-
-    if (!confirmed) {
-      return;
-    }
-
-    setDeletingId(id);
-
-    try {
-      const response = await fetch(`/api/admin/work/${id}`, { method: "DELETE" });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete item.");
-      }
-
-      router.refresh();
-    } catch {
-      window.alert("Unable to delete this item.");
-    } finally {
-      setDeletingId(null);
-    }
-  };
+  const mediaTypeOptions = [
+    { value: "image", label: "Image" },
+    { value: "video", label: "Video" }
+  ];
 
   return (
-    <div className="space-y-4">
-      {items.map((item) => (
-        <article key={item.id} className="panel p-5">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <p className="text-xs uppercase tracking-wide text-text-muted">{item.media_type}</p>
-              <h3 className="mt-1 text-lg font-semibold text-text-primary">{item.title}</h3>
-              <p className="mt-1 text-xs text-text-secondary">{item.category || "General"}</p>
-            </div>
-            <span className={`rounded-full px-3 py-1 text-xs ${item.published ? "bg-accent/15 text-accent" : "bg-surface-2 text-text-secondary"}`}>
-              {item.published ? "Published" : "Draft"}
-            </span>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-3 text-sm">
-            <Link href={`/admin/work/${item.id}`} className="rounded-full border border-border px-4 py-2 font-medium text-text-secondary hover:bg-surface-2 hover:text-text-primary">
-              Edit
-            </Link>
-            <button
-              type="button"
-              onClick={() => onDelete(item.id)}
-              disabled={deletingId === item.id}
-              className="rounded-full border border-red-500/40 px-4 py-2 font-medium text-red-300 hover:bg-red-500/10 disabled:opacity-60"
-            >
-              {deletingId === item.id ? "Deleting..." : "Delete"}
-            </button>
-          </div>
-        </article>
-      ))}
-
-      {items.length === 0 ? <p className="text-sm text-text-secondary">No work items found yet.</p> : null}
-    </div>
+    <AdminManagedTable
+      items={items}
+      columns={columns}
+      entityLabel="work item"
+      editBasePath="/admin/work"
+      deleteBasePath="/api/admin/work"
+      searchKeys={["title", "description"]}
+      filters={[
+        { key: "category", label: "All Categories", options: categoryOptions, getValue: (item) => item.category },
+        { key: "media_type", label: "All Media Types", options: mediaTypeOptions, getValue: (item) => item.media_type }
+      ]}
+    />
   );
 }

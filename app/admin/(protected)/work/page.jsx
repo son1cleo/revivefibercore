@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Plus } from "lucide-react";
 import WorkList from "@/components/admin/WorkList";
 import { getAllAdminWorkItems } from "@/lib/cms";
 
@@ -14,7 +15,8 @@ export default async function AdminWorkPage() {
             <h1 className="mt-2 font-display text-4xl text-text-primary">Work Items</h1>
             <p className="mt-2 text-sm text-text-secondary">Showcase completed projects and media.</p>
           </div>
-          <Link href="/admin/work/new" className="btn-primary">
+          <Link href="/admin/work/new" className="btn-primary inline-flex items-center gap-1.5">
+            <Plus className="h-4 w-4" />
             New Work Item
           </Link>
         </div>

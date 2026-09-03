@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Plus } from "lucide-react";
 import ProductList from "@/components/admin/ProductList";
 import { getAllAdminProductItems } from "@/lib/cms";
 
@@ -14,7 +15,8 @@ export default async function AdminProductsPage() {
             <h1 className="mt-2 font-display text-4xl text-text-primary">Products</h1>
             <p className="mt-2 text-sm text-text-secondary">Manage the photos shown on the Our Products page.</p>
           </div>
-          <Link href="/admin/products/new" className="btn-primary">
+          <Link href="/admin/products/new" className="btn-primary inline-flex items-center gap-1.5">
+            <Plus className="h-4 w-4" />
             Add Product
           </Link>
         </div>

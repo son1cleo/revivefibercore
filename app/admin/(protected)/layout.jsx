@@ -11,7 +11,7 @@ export default async function AdminLayout({ children }) {
   }
 
   return (
-    <div className="page-shell py-4">
+    <div className="min-h-screen bg-bg">
       <AdminIdleLogout />
       <AdminShell email={user.email}>{children}</AdminShell>
     </div>

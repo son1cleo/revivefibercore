@@ -1,7 +1,9 @@
 import { Factory, Globe2, MapPin, Package, Users, Warehouse } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import IconCardGrid from "@/components/IconCardGrid";
+import ImpactChart from "@/components/ImpactChart";
 import TeamGrid from "@/components/TeamGrid";
+import { getPublishedImpactStats } from "@/lib/cms";
 import { facilities, globalMarkets, rawMaterials, recyclingProcess, team } from "@/lib/content";
 
 export const metadata = {
@@ -23,7 +25,9 @@ const processItems = recyclingProcess.map((item, index) => ({ ...item, icon: pro
 const materialIcons = ["Shirt", "Layers", "Scissors", "Recycle", "Package", "Box"];
 const materialItems = rawMaterials.map((item, index) => ({ ...item, icon: materialIcons[index] || "Recycle" }));
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const impactStats = await getPublishedImpactStats();
+
   return (
     <div className="page-shell py-16">
       <AnimatedSection className="panel p-8 md:p-12">
@@ -93,6 +97,18 @@ export default function AboutPage() {
           ))}
         </div>
       </AnimatedSection>
+
+      {impactStats.length > 0 ? (
+        <AnimatedSection className="mt-14">
+          <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Environmental Impact</h2>
+          <p className="mt-2 max-w-2xl text-sm text-text-secondary">
+            Water and carbon emissions saved each year through our recycling operations.
+          </p>
+          <div className="mt-5">
+            <ImpactChart stats={impactStats} />
+          </div>
+        </AnimatedSection>
+      ) : null}
 
       <AnimatedSection className="mt-14">
         <h2 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] text-text-primary">Team</h2>
