@@ -5,12 +5,17 @@ import { useRouter } from "next/navigation";
 
 const sectionsByCategory = {
   "recycled-fibers": ["Machine In Production", "Packing & Export"],
-  "wiping-rags": ["Wiping Rags"]
+  "wiping-rags": ["Wiping Rags"],
+  "sustainable-sampling": ["Sustainable Product Sampling"]
 };
 
 function deriveProductCategory(category) {
   if (category === "Wiping Rags") {
     return { productCategory: "wiping-rags", section: "Wiping Rags" };
+  }
+
+  if (category === "Sustainable Product Sampling") {
+    return { productCategory: "sustainable-sampling", section: "Sustainable Product Sampling" };
   }
 
   if (category === "Machine In Production" || category === "Packing & Export") {
@@ -97,7 +102,7 @@ export default function ProductEditor({ item = null }) {
     try {
       const endpoint = item ? `/api/admin/work/${item.id}` : "/api/admin/work";
       const method = item ? "PATCH" : "POST";
-      const category = form.productCategory === "wiping-rags" ? "Wiping Rags" : form.section;
+      const category = form.section;
 
       const response = await fetch(endpoint, {
         method,
@@ -142,6 +147,7 @@ export default function ProductEditor({ item = null }) {
           >
             <option value="recycled-fibers">Recycled Fibers</option>
             <option value="wiping-rags">Wiping Rags</option>
+            <option value="sustainable-sampling">Sustainable Product Sampling</option>
           </select>
         </label>
 

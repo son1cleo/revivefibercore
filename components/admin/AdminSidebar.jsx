@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Images, LayoutDashboard, MessageSquare, Package, Users } from "lucide-react";
+import { Images, LayoutDashboard, MessageSquare, Package, Palette, Users } from "lucide-react";
 import BrandLogo from "@/components/BrandLogo";
 import AdminLogoutButton from "@/components/admin/AdminLogoutButton";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/products", label: "Products", icon: Package },
+  { href: "/admin/colors", label: "Colors", icon: Palette },
   { href: "/admin/work", label: "Work Items", icon: Images },
   { href: "/admin/clients", label: "Clients", icon: Users },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare }

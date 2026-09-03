@@ -7,7 +7,8 @@ import { useState } from "react";
 const categoryLabels = {
   "Machine In Production": "Recycled Fibers — Machine In Production",
   "Packing & Export": "Recycled Fibers — Packing & Export",
-  "Wiping Rags": "Wiping Rags"
+  "Wiping Rags": "Wiping Rags",
+  "Sustainable Product Sampling": "Sustainable Product Sampling"
 };
 
 export default function ProductList({ items }) {

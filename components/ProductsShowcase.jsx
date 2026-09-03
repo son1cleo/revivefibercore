@@ -3,9 +3,8 @@
 import { useState } from "react";
 import ImageGallery from "@/components/ImageGallery";
 import ImageSlideshow from "@/components/ImageSlideshow";
-import { sustainableSamplingImages } from "@/lib/content";
 
-export default function ProductsShowcase({ categories }) {
+export default function ProductsShowcase({ categories, samplingImages }) {
   const [activeCategory, setActiveCategory] = useState(categories[0].key);
   const category = categories.find((item) => item.key === activeCategory);
   const [activeSub, setActiveSub] = useState(category.subcategories[0]?.key || null);
@@ -56,7 +55,7 @@ export default function ProductsShowcase({ categories }) {
               Custom colors available on request — tailored shades for your mill&apos;s specifications.
             </p>
 
-            <ImageSlideshow items={sustainableSamplingImages} />
+            <ImageSlideshow items={samplingImages} />
           </div>
         )}
 

@@ -1,7 +1,7 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import ProductsShowcase from "@/components/ProductsShowcase";
-import { productCategories } from "@/lib/content";
-import { getPublishedWorkItemsByCategory } from "@/lib/cms";
+import { productCategories, sustainableSamplingImages } from "@/lib/content";
+import { getPublishedProductColors, getPublishedWorkItemsByCategory } from "@/lib/cms";
 
 export const metadata = {
   title: "Our Products | Revive Fiber Co",
@@ -9,16 +9,19 @@ export const metadata = {
 };
 
 export default async function ProductsPage() {
-  const [machineImages, packingImages, wipingRagsImages] = await Promise.all([
+  const [machineImages, packingImages, wipingRagsImages, samplingImages, colors] = await Promise.all([
     getPublishedWorkItemsByCategory("Machine In Production"),
     getPublishedWorkItemsByCategory("Packing & Export"),
-    getPublishedWorkItemsByCategory("Wiping Rags")
+    getPublishedWorkItemsByCategory("Wiping Rags"),
+    getPublishedWorkItemsByCategory("Sustainable Product Sampling"),
+    getPublishedProductColors()
   ]);
 
   const categories = productCategories.map((category) => {
     if (category.key === "recycled-fibers") {
       return {
         ...category,
+        colors,
         subcategories: category.subcategories.map((sub) => {
           if (sub.key === "machine-in-production" && machineImages) {
             return { ...sub, images: machineImages };
@@ -53,7 +56,7 @@ export default async function ProductsPage() {
         </p>
       </AnimatedSection>
 
-      <ProductsShowcase categories={categories} />
+      <ProductsShowcase categories={categories} samplingImages={samplingImages && samplingImages.length > 0 ? samplingImages : sustainableSamplingImages} />
     </div>
   );
 }

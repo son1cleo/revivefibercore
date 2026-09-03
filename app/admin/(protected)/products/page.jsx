@@ -23,8 +23,14 @@ export default async function AdminProductsPage() {
           <p className="font-semibold text-text-primary">Where these show up</p>
           <p className="mt-1">
             Choose <strong>Recycled Fibers</strong> and a section (<strong>Machine In Production</strong> or{" "}
-            <strong>Packing &amp; Export</strong>), or <strong>Wiping Rags</strong>. Published items appear immediately
-            under the matching section on the Our Products page, and in the general Work gallery.
+            <strong>Packing &amp; Export</strong>), <strong>Wiping Rags</strong>, or{" "}
+            <strong>Sustainable Product Sampling</strong> (the sliding gallery under Available Colors). Published items
+            appear immediately under the matching section on the Our Products page, and most also show in the general
+            Work gallery. Want to edit the color swatches instead? See{" "}
+            <Link href="/admin/colors" className="underline">
+              Colors
+            </Link>
+            .
           </p>
         </div>
 
