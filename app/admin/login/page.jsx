@@ -34,32 +34,6 @@ export default function AdminLoginPage() {
     }
   };
 
-  const handleMagicLink = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    setMessage("");
-
-    try {
-      const supabase = createSupabaseBrowserClient();
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: {
-          emailRedirectTo: `${window.location.origin}/admin`
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      setMessage("Magic link sent. Check your inbox.");
-    } catch (error) {
-      setMessage(error.message || "Unable to send magic link.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleForgotPassword = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -131,24 +105,7 @@ export default function AdminLoginPage() {
         <p className="section-label">Admin / Access</p>
         <h1 className="mt-2 font-display text-3xl text-text-primary">Sign in to Dashboard</h1>
 
-        <div className="mt-6 grid grid-cols-2 rounded-xl border border-border p-1 text-sm">
-          <button
-            type="button"
-            onClick={() => setMode("password")}
-            className={`rounded-lg px-3 py-2 ${mode === "password" ? "bg-accent text-bg" : "text-text-secondary"}`}
-          >
-            Password
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("magic")}
-            className={`rounded-lg px-3 py-2 ${mode === "magic" ? "bg-accent text-bg" : "text-text-secondary"}`}
-          >
-            Magic Link
-          </button>
-        </div>
-
-        <form onSubmit={mode === "password" ? handlePasswordLogin : handleMagicLink} className="mt-6 space-y-4">
+        <form onSubmit={handlePasswordLogin} className="mt-6 space-y-4">
           <label className="block text-sm font-medium text-text-secondary">
             Email
             <input
@@ -160,35 +117,31 @@ export default function AdminLoginPage() {
             />
           </label>
 
-          {mode === "password" && (
-            <label className="block text-sm font-medium text-text-secondary">
-              Password
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
-              />
-            </label>
-          )}
+          <label className="block text-sm font-medium text-text-secondary">
+            Password
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              className="mt-1 w-full rounded-xl border border-border bg-surface px-4 py-3 text-text-primary outline-none transition focus:border-accent"
+            />
+          </label>
 
           <button type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-70">
-            {loading ? "Please wait..." : mode === "password" ? "Sign In" : "Send Magic Link"}
+            {loading ? "Please wait..." : "Sign In"}
           </button>
 
-          {mode === "password" && (
-            <button
-              type="button"
-              onClick={() => {
-                setMode("forgot");
-                setMessage("");
-              }}
-              className="w-full text-center text-sm text-text-secondary hover:text-text-primary"
-            >
-              Forgot your password?
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => {
+              setMode("forgot");
+              setMessage("");
+            }}
+            className="w-full text-center text-sm text-text-secondary hover:text-text-primary"
+          >
+            Forgot your password?
+          </button>
 
           {message ? <p className="text-sm text-text-secondary">{message}</p> : null}
         </form>
